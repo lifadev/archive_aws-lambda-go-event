@@ -25,6 +25,7 @@ Currently supported AWS services:
   - [Amazon S3](#amazon-s3)
   - [Amazon Kinesis Streams](#amazon-kinesis-streams)
   - [Amazon Simple Notification Service](#amazon-simple-notification-service)
+  - [Amazon DynamoDB Streams](#amazon-dynamodb-streams)
 
 ## Preview
 
@@ -154,6 +155,47 @@ func main() {}
 docker run --rm -v $GOPATH:/go -v $PWD:/tmp eawsy/aws-lambda-go
 ```
 
+[<img src="_asset/arrow-up.png" align="right">](#top)
+### Amazon DynamoDB Streams
+
+[![AWS Doc][aws-badge]][aws-dynamodb-dev]
+[![Go Doc][api-badge]][eawsy-dynamodbstreams-dev]
+
+```sh
+go get -u -d github.com/eawsy/aws-lambda-go-event/...
+```
+
+```go
+package main
+
+import (
+	"log"
+
+	"github.com/eawsy/aws-lambda-go-event/service/lambda/runtime/event/dynamodbstreamsevt"
+	"github.com/eawsy/aws-lambda-go/service/lambda/runtime"
+)
+
+func handle(evt *dynamodbstreamsevt.Event, ctx *runtime.Context) (interface{}, error) {
+	for _, rec := range evt.Records {
+		log.Printf(
+			"EventName: %s, StreamViewType: %s\n",
+			rec.EventName, rec.DynamoDB.StreamViewType,
+		)
+	}
+	return nil, nil
+}
+
+func init() {
+	runtime.Handle(dynamodbstreamsevt.HandlerFunc(handle))
+}
+
+func main() {}
+```
+
+```sh
+docker run --rm -v $GOPATH:/go -v $PWD:/tmp eawsy/aws-lambda-go
+```
+
 ## About
 
 [![eawsy](_asset/eawsy-logo.png)][eawsy-home]
@@ -187,6 +229,7 @@ its affiliates in the United States and/or other countries.
 [eawsy-s3-dev]: https://godoc.org/github.com/eawsy/aws-lambda-go-event/service/lambda/runtime/event/s3evt
 [eawsy-kinesis-dev]: https://godoc.org/github.com/eawsy/aws-lambda-go-event/service/lambda/runtime/event/kinesisevt
 [eawsy-sns-dev]: https://godoc.org/github.com/eawsy/aws-lambda-go-event/service/lambda/runtime/event/snsevt
+[eawsy-dynamodbstreams-dev]: https://godoc.org/github.com/eawsy/aws-lambda-go-event/service/lambda/runtime/event/dynamodbstreamsevt
 [aws-home]: https://aws.amazon.com/
 [aws-lambda-home]: https://aws.amazon.com/lambda/
 [aws-lambda-events]: http://docs.aws.amazon.com/lambda/latest/dg/invoking-lambda-function.html
@@ -194,6 +237,7 @@ its affiliates in the United States and/or other countries.
 [aws-s3-dev]: http://docs.aws.amazon.com/AmazonS3/latest/dev/Welcome.html
 [aws-kinesis-dev]: http://docs.aws.amazon.com/streams/latest/dev/introduction.html
 [aws-sns-dev]: http://docs.aws.amazon.com/sns/latest/dg/welcome.html
+[aws-dynamodb-dev]: http://docs.aws.amazon.com/amazondynamodb/latest/developerguide/Introduction.html
 [runtime-badge]: http://img.shields.io/badge/runtime-go-ef6c00.svg?style=flat-square
 [api-badge]: http://img.shields.io/badge/api-godoc-7986cb.svg?style=flat-square
 [aws-badge]: http://img.shields.io/badge/api-awsdoc-efaf27.svg?style=flat-square
