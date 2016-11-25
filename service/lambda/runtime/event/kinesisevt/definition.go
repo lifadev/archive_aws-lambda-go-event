@@ -39,7 +39,7 @@ type Record struct {
 	// The approximate time that the record was inserted into the stream.
 	// This is set when a stream successfully receives and stores a record and
 	// is commonly referred to as a server-side timestamp.
-	// It has millisecond precision and there are no guarantees about the its
+	// It has millisecond precision and there are no guarantees about its
 	// accuracy, or that the it is always increasing. For example, records in
 	// a shard or across a stream might have timestamps that are out of order.
 	ApproximateArrivalTimestamp Timestamp

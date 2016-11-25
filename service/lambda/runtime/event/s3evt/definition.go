@@ -159,7 +159,7 @@ type EventRecord struct {
 	S3 *Record
 }
 
-// Event represents and Amazon S3 event.
+// Event represents an Amazon S3 event.
 // See also http://docs.aws.amazon.com/AmazonS3/latest/dev/notification-content-structure.html
 type Event struct {
 	// The list of Amazon S3 event records.
