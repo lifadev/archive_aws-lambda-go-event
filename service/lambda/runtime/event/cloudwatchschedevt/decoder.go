@@ -14,25 +14,21 @@
 // limitations under the License.
 //
 
-package snsevt
+package cloudwatchschedevt
 
 import (
-	"encoding/json"
-
-	"github.com/eawsy/aws-lambda-go/service/lambda/runtime"
+	"bytes"
+	"time"
 )
 
-// HandlerFunc type is an adapter to allow the use of ordinary functions as
-// Amazon SNS events handlers. If f is a function with the appropriate
-// signature, HandlerFunc(f) is a Handler that calls f after unmarshaling the
-// raw json event.
-type HandlerFunc func(*Event, *runtime.Context) (interface{}, error)
-
-// HandleLambda calls f(evt, ctx)
-func (f HandlerFunc) HandleLambda(revt json.RawMessage, rctx *runtime.Context) (interface{}, error) {
-	evt := &Event{}
-	if err := json.Unmarshal(revt, evt); err != nil {
-		return nil, err
+// UnmarshalJSON interprets the data as a RFC3339 time. It then sets *t to a
+// copy of the interpreted time.
+func (t *Timestamp) UnmarshalJSON(data []byte) error {
+	v, err := time.Parse(time.RFC3339, string(bytes.Trim(data, `"`)))
+	if err != nil {
+		return err
 	}
-	return f(evt, rctx)
+
+	t.Time = v
+	return nil
 }

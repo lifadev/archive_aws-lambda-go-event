@@ -15,9 +15,13 @@
 //
 
 /*
-Package snsevt allows you to write AWS Lambda functions to process Amazon Simple
-Notification Service notifications.
+Package cloudwatchschedevt allows you to write AWS Lambda functions executed on
+a regular, scheduled basis using the schedule event capability in Amazon
+CloudWatch Events.
 
-http://docs.aws.amazon.com/lambda/latest/dg/invoking-lambda-function.html#supported-event-source-sns
+This package works only when forwarding the whole event to your Lambda function.
+Otherwise you will have to handle the event manually.
+
+http://docs.aws.amazon.com/lambda/latest/dg/invoking-lambda-function.html#supported-event-source-scheduled-events
 */
-package snsevt
+package cloudwatchschedevt

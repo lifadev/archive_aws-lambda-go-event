@@ -14,7 +14,7 @@
 // limitations under the License.
 //
 
-package kinesisevt
+package kinesisstreamsevt
 
 import (
 	"encoding/json"
@@ -56,7 +56,8 @@ type Record struct {
 	Data []byte
 }
 
-// EventRecord provides contextual information about an Amazon Kinesis record.
+// EventRecord provides contextual information about an Amazon Kinesis streams
+// record.
 type EventRecord struct {
 	// The event id.
 	EventID string
@@ -79,23 +80,34 @@ type EventRecord struct {
 	// The AWS region where the event originated.
 	AWSRegion string
 
-	// The underlying Amazon Kinesis record associated with the event.
+	// The underlying Amazon Kinesis streams record associated with the event.
 	Kinesis *Record
 }
 
-// Event represents an Amazon Kinesis event.
-type Event struct {
-	// The list of Amazon Kinesis event records.
-	Records []*EventRecord
-}
-
-// String returns the string representation
-func (e Event) String() string {
+// String returns the string representation.
+func (e *EventRecord) String() string {
 	s, _ := json.MarshalIndent(e, "", "  ")
 	return string(s)
 }
 
-// GoString returns the string representation
-func (e Event) GoString() string {
+// GoString returns the string representation.
+func (e *EventRecord) GoString() string {
+	return e.String()
+}
+
+// Event represents an Amazon Kinesis streams event.
+type Event struct {
+	// The list of Amazon Kinesis streams event records.
+	Records []*EventRecord
+}
+
+// String returns the string representation.
+func (e *Event) String() string {
+	s, _ := json.MarshalIndent(e, "", "  ")
+	return string(s)
+}
+
+// GoString returns the string representation.
+func (e *Event) GoString() string {
 	return e.String()
 }

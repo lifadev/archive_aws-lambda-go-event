@@ -16,7 +16,7 @@
 
 /*
 Package s3evt allows you to write AWS Lambda functions to process S3 bucket
-events, such as the object-created or object-deleted events.
+events.
 
 http://docs.aws.amazon.com/lambda/latest/dg/invoking-lambda-function.html#supported-event-source-s3
 */

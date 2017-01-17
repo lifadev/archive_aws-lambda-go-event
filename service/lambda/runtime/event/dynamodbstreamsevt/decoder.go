@@ -22,7 +22,7 @@ import (
 )
 
 // UnmarshalJSON interprets the data as a float64 number, with the integer parts
-// being the number of seconds elapsed since January 1, year 1 00:00:00 UTC and
+// being the number of seconds elapsed since January 1, 1970 00:00:00 UTC and
 // the fractional part being millisecond offset within the second. It then sets
 // *t to a copy of the interpreted time.
 func (t *Timestamp) UnmarshalJSON(data []byte) error {

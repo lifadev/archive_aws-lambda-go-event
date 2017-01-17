@@ -14,25 +14,26 @@
 // limitations under the License.
 //
 
-package s3evt
+package kinesisstreamsevt
 
 import (
-	"encoding/json"
-
-	"github.com/eawsy/aws-lambda-go/service/lambda/runtime"
+	"strconv"
+	"time"
 )
 
-// HandlerFunc type is an adapter to allow the use of ordinary functions as
-// Amazon S3 events handlers. If f is a function with the appropriate
-// signature, HandlerFunc(f) is a Handler that calls f after unmarshaling the
-// raw json event.
-type HandlerFunc func(*Event, *runtime.Context) (interface{}, error)
-
-// HandleLambda calls f(evt, ctx)
-func (f HandlerFunc) HandleLambda(revt json.RawMessage, rctx *runtime.Context) (interface{}, error) {
-	evt := &Event{}
-	if err := json.Unmarshal(revt, evt); err != nil {
-		return nil, err
+// UnmarshalJSON interprets the data as a float64 number, with the integer parts
+// being the number of seconds elapsed since January 1, 1970 00:00:00 UTC and
+// the fractional part being millisecond offset within the second. It then sets
+// *t to a copy of the interpreted time.
+func (t *Timestamp) UnmarshalJSON(data []byte) error {
+	v, err := strconv.ParseFloat(string(data), 64)
+	if err != nil {
+		return err
 	}
-	return f(evt, rctx)
+
+	sec := int64(v)
+	nsec := int64((v - float64(sec)) * float64(time.Second))
+
+	t.Time = time.Unix(sec, nsec)
+	return nil
 }

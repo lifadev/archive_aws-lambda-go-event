@@ -73,7 +73,7 @@ type Record struct {
 	// The URL to the certificate that was used to sign the message.
 	SignatureCertURL string
 
-	// The ARN for the topic that this message was published to.
+	// The ARN of the topic that this message was published to.
 	TopicARN string
 
 	// An URL that you can use to unsubscribe the endpoint from this topic. If you
@@ -97,19 +97,30 @@ type EventRecord struct {
 	SNS *Record
 }
 
+// String returns the string representation.
+func (e *EventRecord) String() string {
+	s, _ := json.MarshalIndent(e, "", "  ")
+	return string(s)
+}
+
+// GoString returns the string representation.
+func (e *EventRecord) GoString() string {
+	return e.String()
+}
+
 // Event represents an Amazon SNS event.
 type Event struct {
 	// The list of Amazon SNS event records.
 	Records []*EventRecord
 }
 
-// String returns the string representation
-func (e Event) String() string {
+// String returns the string representation.
+func (e *Event) String() string {
 	s, _ := json.MarshalIndent(e, "", "  ")
 	return string(s)
 }
 
-// GoString returns the string representation
-func (e Event) GoString() string {
+// GoString returns the string representation.
+func (e *Event) GoString() string {
 	return e.String()
 }

@@ -15,8 +15,8 @@
 //
 
 /*
-Package event provides a collection of AWS services event definitions and
-utility functions to streamline AWS Lambda event source mapping.
+Package event provides type definitions and helpers to deal with AWS Lambda
+event source mapping.
 
 Take a tour at https://github.com/eawsy/aws-lambda-go-event
 */

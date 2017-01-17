@@ -14,26 +14,34 @@
 // limitations under the License.
 //
 
-package kinesisevt
+package sesevt
 
 import (
-	"strconv"
+	"bytes"
 	"time"
 )
 
-// UnmarshalJSON interprets the data as a float64 number, with the integer parts
-// being the number of seconds elapsed since January 1, year 1 00:00:00 UTC and
-// the fractional part being millisecond offset within the second. It then sets
-// *t to a copy of the interpreted time.
-func (t *Timestamp) UnmarshalJSON(data []byte) error {
-	v, err := strconv.ParseFloat(string(data), 64)
+// UnmarshalJSON interprets the data as a RFC322 date and time. It then sets *t
+// to a copy of the interpreted time.
+// See https://tools.ietf.org/search/rfc5322#section-3.3 for more informations.
+func (t *MailTimestamp) UnmarshalJSON(data []byte) error {
+	v, err := time.Parse("Mon, _2 Jan 2006 15:04:05 -0700", string(bytes.Trim(data, `"`)))
 	if err != nil {
 		return err
 	}
 
-	sec := int64(v)
-	nsec := int64((v - float64(sec)) * float64(time.Second))
+	t.Time = v
+	return nil
+}
 
-	t.Time = time.Unix(sec, nsec)
+// UnmarshalJSON interprets the data as a RFC3339Nano time. It then sets *t to a
+// copy of the interpreted time.
+func (t *Timestamp) UnmarshalJSON(data []byte) error {
+	v, err := time.Parse(time.RFC3339Nano, string(bytes.Trim(data, `"`)))
+	if err != nil {
+		return err
+	}
+
+	t.Time = v
 	return nil
 }

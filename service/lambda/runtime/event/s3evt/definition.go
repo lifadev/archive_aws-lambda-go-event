@@ -81,7 +81,7 @@ type Bucket struct {
 	// The bucket name.
 	Name string
 
-	// The bucket arn.
+	// The bucket ARN.
 	ARN string
 
 	// The IAM identity of the Amazon S3 bucket owner.
@@ -159,6 +159,17 @@ type EventRecord struct {
 	S3 *Record
 }
 
+// String returns the string representation.
+func (e *EventRecord) String() string {
+	s, _ := json.MarshalIndent(e, "", "  ")
+	return string(s)
+}
+
+// GoString returns the string representation.
+func (e *EventRecord) GoString() string {
+	return e.String()
+}
+
 // Event represents an Amazon S3 event.
 // See also http://docs.aws.amazon.com/AmazonS3/latest/dev/notification-content-structure.html
 type Event struct {
@@ -166,13 +177,13 @@ type Event struct {
 	Records []*EventRecord
 }
 
-// String returns the string representation
-func (e Event) String() string {
+// String returns the string representation.
+func (e *Event) String() string {
 	s, _ := json.MarshalIndent(e, "", "  ")
 	return string(s)
 }
 
-// GoString returns the string representation
-func (e Event) GoString() string {
+// GoString returns the string representation.
+func (e *Event) GoString() string {
 	return e.String()
 }

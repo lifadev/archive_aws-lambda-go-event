@@ -15,9 +15,9 @@
 //
 
 /*
-Package snsevt allows you to write AWS Lambda functions to process Amazon Simple
-Notification Service notifications.
+Package cognitosyncevt allows you to write AWS Lambda functions to process
+Amazon Cognito Sync events published each time a dataset is synchronized.
 
-http://docs.aws.amazon.com/lambda/latest/dg/invoking-lambda-function.html#supported-event-source-sns
+http://docs.aws.amazon.com/lambda/latest/dg/invoking-lambda-function.html#supported-event-source-cognito
 */
-package snsevt
+package cognitosyncevt

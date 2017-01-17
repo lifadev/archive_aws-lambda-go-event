@@ -15,10 +15,9 @@
 //
 
 /*
-Package kinesisevt allows you to write AWS Lambda functions to poll your stream
-and process any new records such as website click streams, financial
-transactions, social media feeds, IT logs, and location-tracking events.
+Package kinesisstreamsevt allows you to write AWS Lambda functions to consume and
+process data from Amazon Kinesis streams.
 
 http://docs.aws.amazon.com/lambda/latest/dg/invoking-lambda-function.html#supported-event-source-kinesis-streams
 */
-package kinesisevt
+package kinesisstreamsevt

@@ -40,61 +40,61 @@ type AttributeValue struct {
 	// A Binary data type.
 	//
 	// B is automatically base64 encoded/decoded by the SDK.
-	B []byte
+	B []byte `json:",omitempty"`
 
 	// A Boolean data type.
-	BOOL bool
+	BOOL bool `json:",omitempty"`
 
 	// A Binary Set data type.
-	BS [][]byte
+	BS [][]byte `json:",omitempty"`
 
 	// A List of attribute values.
-	L []AttributeValue
+	L []*AttributeValue `json:",omitempty"`
 
 	// A Map of attribute values.
-	M map[string]AttributeValue
+	M map[string]*AttributeValue `json:",omitempty"`
 
 	// A Number data type.
-	N string
+	N string `json:",omitempty"`
 
 	// A Number Set data type.
-	NS []string
+	NS []string `json:",omitempty"`
 
 	// A Null data type.
-	NULL bool
+	NULL bool `json:",omitempty"`
 
 	// A String data type.
-	S string
+	S string `json:",omitempty"`
 
 	// A String Set data type.
-	SS []string
+	SS []string `json:",omitempty"`
 }
 
 // Record is a description of a single data modification that was performed on
 // an item in a DynamoDB table.
 type Record struct {
 	// The unique identifier of the record in the stream.
-	// See also http://docs.aws.amazon.com/streams/latest/dev/kinesis-record-processor-duplicates.html ;)
+	// See also http://docs.aws.amazon.com/streams/latest/dev/kinesis-record-processor-duplicates.html
 	SequenceNumber string
 
 	// The type of data from the modified DynamoDB item that was captured in
 	// this stream record:
-	//   * KEYS_ONLY - only the key attributes of the modified item.
-	//   * NEW_IMAGE - the entire item, as it appeared after it was modified.
-	//   * OLD_IMAGE - the entire item, as it appeared before it was modified.
-	//   * NEW_AND_OLD_IMAGES - both the new and the old item images of the item.
+	//   - KEYS_ONLY: only the key attributes of the modified item.
+	//   - NEW_IMAGE: the entire item, as it appeared after it was modified.
+	//   - OLD_IMAGE: the entire item, as it appeared before it was modified.
+	//   - NEW_AND_OLD_IMAGES: both the new and the old item images of the item.
 	StreamViewType string
 
 	// The approximate date and time when the stream record was created.
 	ApproximateCreationDateTime Timestamp
 
-	// The primary key attribute(s) for the DynamoDB item that was modified.
+	// The primary key attributes for the DynamoDB item that was modified.
 	Keys map[string]*AttributeValue
 
-	// The item in the DynamoDB table as it appeared before it was modified.
+	// The item attributes as before item was modified.
 	OldImage map[string]*AttributeValue
 
-	// The item in the DynamoDB table as it appeared after it was modified.
+	// The item attributes after item was modified.
 	NewImage map[string]*AttributeValue
 
 	// The size of the stream record, in bytes.
@@ -109,22 +109,22 @@ type EventRecord struct {
 	EventID string
 
 	// The type of data modification that was performed on the DynamoDB table:
-	//   * INSERT - a new item was added to the table.
-	//   * MODIFY - one or more of an existing item's attributes were modified.
-	//   * REMOVE - the item was deleted from the table.
+	// - INSERT: a new item was added to the table.
+	// - MODIFY: one or more of an existing item's attributes were modified.
+	// - REMOVE: the item was deleted from the table.
 	EventName string
 
 	// The version number of the stream record format. This number is updated
 	// whenever the structure of Record is modified.
 	//
-	// Client applications must not assume that eventVersion will remain at a
+	// Client applications must not assume that EventVersion will remain at a
 	// particular value, as this number is subject to change at any time. In
-	// general, eventVersion will only increase as the low-level Amazon DynamoDB
+	// general, EventVersion will only increase as the low-level Amazon DynamoDB
 	// Streams API evolves.
 	EventVersion string
 
 	// The AWS service from which the stream record originated.
-	// For Amazon DynamoDB Streams, this is aws:dynamodb.
+	// In our case the value is always "aws:dynamodb".
 	EventSource string
 
 	// The region in which the GetRecords request was received.
@@ -135,19 +135,30 @@ type EventRecord struct {
 	DynamoDB *Record
 }
 
+// String returns the string representation.
+func (e *EventRecord) String() string {
+	s, _ := json.MarshalIndent(e, "", "  ")
+	return string(s)
+}
+
+// GoString returns the string representation.
+func (e *EventRecord) GoString() string {
+	return e.String()
+}
+
 // Event represents an Amazon DynamoDB Streams event.
 type Event struct {
 	// The list of Amazon DynamoDB Streams event records.
 	Records []*EventRecord
 }
 
-// String returns the string representation
-func (e Event) String() string {
+// String returns the string representation.
+func (e *Event) String() string {
 	s, _ := json.MarshalIndent(e, "", "  ")
 	return string(s)
 }
 
-// GoString returns the string representation
-func (e Event) GoString() string {
+// GoString returns the string representation.
+func (e *Event) GoString() string {
 	return e.String()
 }

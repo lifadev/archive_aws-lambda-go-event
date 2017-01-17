@@ -15,9 +15,8 @@
 //
 
 /*
-Package dynamodbstreamsevt allows you to write AWS Lambda functions as triggers
-for your Amazon DynamoDB table to perform custom actions in response to updates
-made to the DynamoDB table.
+Package dynamodbstreamsevt allows you to write AWS Lambda functions to perform
+custom actions in response to updates made to DynamoDB tables.
 
 http://docs.aws.amazon.com/lambda/latest/dg/invoking-lambda-function.html#supported-event-source-dynamo-db
 */
