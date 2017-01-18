@@ -21,20 +21,14 @@ import (
 	"time"
 )
 
-// Timestamp represents an Amazon CloudWatch Scheduled Event timestamp with
-// seconds precision.
-type Timestamp struct {
-	time.Time
-}
-
-// Event represents an Amazon CloudWatch Scheduled Event.
+// Event represents an Amazon CloudWatch Scheduled event.
 type Event struct {
 	// A unique value generated for every event.
 	ID string
 
 	// The event timestamp, which is the time when the event have been actually
 	// triggered.
-	Time Timestamp
+	Time time.Time
 
 	// The 12-digit number identifying an AWS account.
 	Account string
@@ -45,7 +39,7 @@ type Event struct {
 	// A JSON object, whose content is at the discretion of the service
 	// originating the event.
 	// In our case the value is always an empty object.
-	Detail interface{}
+	Detail json.RawMessage
 
 	// Identifies, in combination with the source field, the fields and values
 	// that will appear in the detail field.

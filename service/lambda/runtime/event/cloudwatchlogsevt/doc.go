@@ -18,7 +18,5 @@
 Package cloudwatchlogsevt allows you write AWS Lambda functions to perform
 custom processing and analysis on real-time feed of log events from Amazon
 CloudWatch Logs.
-
-http://docs.aws.amazon.com/lambda/latest/dg/invoking-lambda-function.html#supported-event-source-cloudwatch-logs
 */
 package cloudwatchlogsevt

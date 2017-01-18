@@ -17,15 +17,22 @@
 package dynamodbstreamsevt
 
 import (
+	"encoding/json"
 	"strconv"
 	"time"
 )
+
+type recordAlias Record
+
+type timestamp struct {
+	time.Time
+}
 
 // UnmarshalJSON interprets the data as a float64 number, with the integer parts
 // being the number of seconds elapsed since January 1, 1970 00:00:00 UTC and
 // the fractional part being millisecond offset within the second. It then sets
 // *t to a copy of the interpreted time.
-func (t *Timestamp) UnmarshalJSON(data []byte) error {
+func (t *timestamp) UnmarshalJSON(data []byte) error {
 	v, err := strconv.ParseFloat(string(data), 64)
 	if err != nil {
 		return err
@@ -36,4 +43,33 @@ func (t *Timestamp) UnmarshalJSON(data []byte) error {
 
 	t.Time = time.Unix(sec, nsec)
 	return nil
+}
+
+type jsonRecord struct {
+	*recordAlias
+	ApproximateCreationDateTime timestamp
+}
+
+// UnmarshalJSON interprets data as a Record with a special timestamp. It then
+// leverages type aliasing and struct embedding to fill Record with an usual
+// time.Time.
+func (r *Record) UnmarshalJSON(data []byte) error {
+	var jr jsonRecord
+	if err := json.Unmarshal(data, &jr); err != nil {
+		return err
+	}
+
+	*r = *(*Record)(jr.recordAlias)
+	r.ApproximateCreationDateTime = jr.ApproximateCreationDateTime.Time
+
+	return nil
+}
+
+// MarshalJSON reverts the effect of type aliasing and struct embedding used
+// during the marshalling step to make the pattern seamless.
+func (r *Record) MarshalJSON() ([]byte, error) {
+	return json.Marshal(&jsonRecord{
+		(*recordAlias)(r),
+		timestamp{r.ApproximateCreationDateTime},
+	})
 }

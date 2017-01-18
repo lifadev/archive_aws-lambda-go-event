@@ -17,7 +17,5 @@
 /*
 Package s3evt allows you to write AWS Lambda functions to process S3 bucket
 events.
-
-http://docs.aws.amazon.com/lambda/latest/dg/invoking-lambda-function.html#supported-event-source-s3
 */
 package s3evt

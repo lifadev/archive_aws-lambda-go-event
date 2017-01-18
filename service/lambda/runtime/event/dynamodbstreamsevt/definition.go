@@ -21,12 +21,6 @@ import (
 	"time"
 )
 
-// Timestamp represents an Amazon DynamoDB Streams event record epoch Timestamp
-// with millisecond precision.
-type Timestamp struct {
-	time.Time
-}
-
 // AttributeValue represents the data for an attribute. One, and only one, of
 // the elements is set.
 //
@@ -86,7 +80,7 @@ type Record struct {
 	StreamViewType string
 
 	// The approximate date and time when the stream record was created.
-	ApproximateCreationDateTime Timestamp
+	ApproximateCreationDateTime time.Time `json:"-"`
 
 	// The primary key attributes for the DynamoDB item that was modified.
 	Keys map[string]*AttributeValue
@@ -102,7 +96,7 @@ type Record struct {
 }
 
 // EventRecord provides contextual information about an Amazon DynamoDB Streams
-// record.
+// event.
 type EventRecord struct {
 	// A globally unique identifier for the event that was recorded in this
 	// stream record.

@@ -17,7 +17,5 @@
 /*
 Package sesevt allows you to write AWS Lambda functions to process Amazon Simple
 Email Service notifications.
-
-http://docs.aws.amazon.com/lambda/latest/dg/invoking-lambda-function.html#supported-event-source-ses
 */
 package sesevt

@@ -21,12 +21,6 @@ import (
 	"time"
 )
 
-// Timestamp represents an Amazon Kinesis event record server-side timestamp
-// with millisecond precision.
-type Timestamp struct {
-	time.Time
-}
-
 // Record represents the unit of data of an Amazon Kinesis stream.
 type Record struct {
 	// The schema version for the record.
@@ -42,7 +36,7 @@ type Record struct {
 	// It has millisecond precision and there are no guarantees about its
 	// accuracy, or that the it is always increasing. For example, records in
 	// a shard or across a stream might have timestamps that are out of order.
-	ApproximateArrivalTimestamp Timestamp
+	ApproximateArrivalTimestamp time.Time
 
 	// Identifies which shard in the stream the data record is assigned to.
 	PartitionKey string
@@ -57,7 +51,7 @@ type Record struct {
 }
 
 // EventRecord provides contextual information about an Amazon Kinesis streams
-// record.
+// event.
 type EventRecord struct {
 	// The event id.
 	EventID string

@@ -21,12 +21,6 @@ import (
 	"time"
 )
 
-// Timestamp represents an Amazon S3 event record timestamp with millisecond
-// precision.
-type Timestamp struct {
-	time.Time
-}
-
 // Object provides information about the Amazon S3 object that caused the event.
 type Object struct {
 	// The object key provides information about the bucket and object involved in
@@ -127,14 +121,14 @@ type ResponseElements struct {
 	AMZRequestID string `json:"x-amz-request-id"`
 }
 
-// EventRecord provides contextual information about an Amazon S3 record.
+// EventRecord provides contextual information about an Amazon S3 event.
 type EventRecord struct {
 	// The Amazon S3 event name.
 	// See also http://docs.aws.amazon.com/AmazonS3/latest/dev/NotificationHowTo.html#notification-how-to-event-types-and-destinations
 	EventName string
 
 	// The time when Amazon S3 finished processing the request.
-	EventTime Timestamp
+	EventTime time.Time
 
 	// The event version.
 	EventVersion string

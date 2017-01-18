@@ -21,12 +21,6 @@ import (
 	"time"
 )
 
-// Timestamp represents an Amazon SNS message record timestamp with millisecond
-// precision.
-type Timestamp struct {
-	time.Time
-}
-
 // MessageAttributes represents an SNS message attribute.
 type MessageAttributes struct {
 	// The attribute type.
@@ -48,7 +42,7 @@ type Record struct {
 	Type string
 
 	// The time when the notification was published.
-	Timestamp Timestamp
+	Timestamp time.Time
 
 	// The Subject parameter specified when the notification was published to the
 	// topic.
@@ -82,7 +76,7 @@ type Record struct {
 	UnsubscribeURL string
 }
 
-// EventRecord provides contextual information about an Amazon SNS record.
+// EventRecord provides contextual information about an Amazon SNS event.
 type EventRecord struct {
 	// The event version.
 	EventVersion string

@@ -25,10 +25,16 @@ import (
 	"time"
 )
 
+type logEventAlias LogEvent
+
+type timestamp struct {
+	time.Time
+}
+
 // UnmarshalJSON interprets the data as an int64 being the number of
 // milliseconds elapsed since January 1, 1970 00:00:00 UTC. It then sets *t to
 // a copy of the interpreted time.
-func (t *Timestamp) UnmarshalJSON(data []byte) error {
+func (t *timestamp) UnmarshalJSON(data []byte) error {
 	v, err := strconv.ParseInt(string(data), 10, 64)
 	if err != nil {
 		return err
@@ -42,19 +48,49 @@ func (t *Timestamp) UnmarshalJSON(data []byte) error {
 	return nil
 }
 
+type jsonLogEvent struct {
+	*logEventAlias
+	Timestamp timestamp
+}
+
+// UnmarshalJSON interprets data as a LogEvent with a special timestamp. It then
+// leverages type aliasing and struct embedding to fill LogEvent with an usual
+// time.Time.
+func (le *LogEvent) UnmarshalJSON(data []byte) error {
+	var jle jsonLogEvent
+	if err := json.Unmarshal(data, &jle); err != nil {
+		return err
+	}
+
+	*le = *(*LogEvent)(jle.logEventAlias)
+	le.Timestamp = jle.Timestamp.Time
+
+	return nil
+}
+
+// MarshalJSON reverts the effect of type aliasing and struct embedding used
+// during the marshalling step to make the pattern seamless.
+func (le *LogEvent) MarshalJSON() ([]byte, error) {
+	return json.Marshal(&jsonLogEvent{
+		(*logEventAlias)(le),
+		timestamp{le.Timestamp},
+	})
+}
+
 // UnmarshalJSON interprets data as an map[string][]byte and ungzip the event
 // data to an EventRecord. For constistency with other AWS Lambda events a list
 // of EventRecords is built with contextual information and the actual log
 // event in it.
 func (recs *EventRecords) UnmarshalJSON(data []byte) error {
-	var logs map[string][]byte
-
+	var logs struct {
+		Data []byte
+	}
 	err := json.Unmarshal(data, &logs)
 	if err != nil {
 		return err
 	}
 
-	zr := bytes.NewReader(logs["data"])
+	zr := bytes.NewReader(logs.Data)
 	r, err := gzip.NewReader(zr)
 	if err != nil {
 		return err
@@ -66,11 +102,10 @@ func (recs *EventRecords) UnmarshalJSON(data []byte) error {
 		return err
 	}
 
-	aux := &struct {
+	var aux struct {
 		*EventRecord
 		LogEvents []*LogEvent
-	}{}
-
+	}
 	err = json.Unmarshal(s, &aux)
 	if err != nil {
 		return err

@@ -21,16 +21,6 @@ import (
 	"time"
 )
 
-// MailTimestamp represents a mail timestamp with second precision.
-type MailTimestamp struct {
-	time.Time
-}
-
-// Timestamp represents an Amazon SES timestamp with millisecond precision.
-type Timestamp struct {
-	time.Time
-}
-
 // Header represents an header value
 type Header struct {
 	// The name of the header
@@ -55,7 +45,7 @@ type CommonHeaders struct {
 	// that the message was complete and ready to enter the mail delivery system.
 	// For instance, this might be the time that a user pushes the "send" or
 	// "submit" button in an application program.
-	Date MailTimestamp
+	Date time.Time `json:"-"`
 
 	// Contains a short string identifying the topic of the message. When used in
 	// a reply, the field body MAY start with the string "Re: " (an abbreviation
@@ -110,7 +100,7 @@ type Mail struct {
 	MessageID string
 
 	// The time at which the email was received.
-	Timestamp Timestamp
+	Timestamp time.Time
 
 	// The email address from which the email was sent (the envelope MAIL FROM
 	// address).
@@ -149,7 +139,7 @@ type Receipt struct {
 	Recipients []string
 
 	// Specifies when the action was triggered.
-	Timestamp Timestamp
+	Timestamp time.Time
 
 	// Specifies the period, in milliseconds, from the time Amazon SES received
 	// the message to the time it triggered the action.
@@ -208,7 +198,7 @@ type Record struct {
 	Receipt *Receipt
 }
 
-// EventRecord provides contextual information about an Amazon SES record.
+// EventRecord provides contextual information about an Amazon SES event.
 type EventRecord struct {
 	// The event version.
 	EventVersion string

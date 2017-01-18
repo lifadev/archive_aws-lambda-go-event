@@ -21,12 +21,6 @@ import (
 	"time"
 )
 
-// Timestamp represents an Amazon CloudWatch Logs record timestamp with
-// millisecond precision.
-type Timestamp struct {
-	time.Time
-}
-
 // LogEvent represents a log event, which is a record of activity that was
 // recorded by the application or resource being monitored.
 type LogEvent struct {
@@ -34,14 +28,14 @@ type LogEvent struct {
 	ID string
 
 	// The time the event occurred.
-	Timestamp Timestamp
+	Timestamp time.Time `json:"-"`
 
 	// The data contained in the log event.
 	Message string
 }
 
 // EventRecord provides contextual information about an Amazon CloudWatch Logs
-// events.
+// event.
 type EventRecord struct {
 	// The AWS Account ID of the originating log data.
 	Owner string

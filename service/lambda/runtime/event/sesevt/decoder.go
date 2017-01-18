@@ -17,15 +17,21 @@
 package sesevt
 
 import (
-	"bytes"
+	"encoding/json"
 	"time"
 )
+
+type commonHeadersAlias CommonHeaders
+
+type timestamp struct {
+	time.Time
+}
 
 // UnmarshalJSON interprets the data as a RFC322 date and time. It then sets *t
 // to a copy of the interpreted time.
 // See https://tools.ietf.org/search/rfc5322#section-3.3 for more informations.
-func (t *MailTimestamp) UnmarshalJSON(data []byte) error {
-	v, err := time.Parse("Mon, _2 Jan 2006 15:04:05 -0700", string(bytes.Trim(data, `"`)))
+func (t *timestamp) UnmarshalJSON(data []byte) error {
+	v, err := time.Parse(`"Mon, _2 Jan 2006 15:04:05 -0700"`, string(data))
 	if err != nil {
 		return err
 	}
@@ -34,14 +40,31 @@ func (t *MailTimestamp) UnmarshalJSON(data []byte) error {
 	return nil
 }
 
-// UnmarshalJSON interprets the data as a RFC3339Nano time. It then sets *t to a
-// copy of the interpreted time.
-func (t *Timestamp) UnmarshalJSON(data []byte) error {
-	v, err := time.Parse(time.RFC3339Nano, string(bytes.Trim(data, `"`)))
-	if err != nil {
+type jsonCommonHeaders struct {
+	*commonHeadersAlias
+	Date timestamp
+}
+
+// UnmarshalJSON interprets data as a CommonHeaders with a special timestamp.
+// It then leverages type aliasing and struct embedding to fill CommonHeaders
+// with an usual time.Time.
+func (ch *CommonHeaders) UnmarshalJSON(data []byte) error {
+	var jch jsonCommonHeaders
+	if err := json.Unmarshal(data, &jch); err != nil {
 		return err
 	}
 
-	t.Time = v
+	*ch = *(*CommonHeaders)(jch.commonHeadersAlias)
+	ch.Date = jch.Date.Time
+
 	return nil
+}
+
+// MarshalJSON reverts the effect of type aliasing and struct embedding used
+// during the marshalling step to make the pattern seamless.
+func (ch *CommonHeaders) MarshalJSON() ([]byte, error) {
+	return json.Marshal(&jsonCommonHeaders{
+		(*commonHeadersAlias)(ch),
+		timestamp{ch.Date},
+	})
 }
