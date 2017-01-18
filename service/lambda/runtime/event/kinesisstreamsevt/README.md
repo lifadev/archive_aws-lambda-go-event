@@ -43,6 +43,7 @@ func Handle(evt *kinesisstreamsevt.Event, ctx *runtime.Context) (interface{}, er
 [<img src="/_asset/misc_arrow-up.png" align="right">](#top)
 ## Supported Events
 
+  - [Amazon API Gateway Proxy Events][eawsy-apigatewayproxyevt]
   - [Amazon CloudWatch Logs Events][eawsy-cloudwatchlogsevt]
   - [Amazon CloudWatch Scheduled Events][eawsy-cloudwatchschedevt]
   - [Amazon Cognito Sync Events][eawsy-cognitosyncevt]
@@ -66,6 +67,7 @@ except in compliance with the License. See [LICENSE](/LICENSE) and [NOTICE](/NOT
 [badge-doc-go]: http://img.shields.io/badge/api-godoc-7986cb.svg?style=flat-square
 [badge-doc-aws]: http://img.shields.io/badge/api-awsdoc-efaf27.svg?style=flat-square
 
+[eawsy-apigatewayproxyevt]: /service/lambda/runtime/event/apigatewayproxyevt
 [eawsy-cloudwatchlogsevt]: /service/lambda/runtime/event/cloudwatchlogsevt
 [eawsy-cloudwatchschedevt]: /service/lambda/runtime/event/cloudwatchschedevt 
 [eawsy-cognitosyncevt]: /service/lambda/runtime/event/cognitosyncevt

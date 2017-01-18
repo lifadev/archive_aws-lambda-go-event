@@ -1,13 +1,13 @@
 <a id="top" name="top"></a>
 
-# Amazon S3 Events
+# Amazon API Gateway Proxy Events
 
 [<img src="/_asset/misc_home.png" alt="Back to Home" align="right">](/)
 [![Go Doc][badge-doc-go]][eawsy-doc]
 [![AWS Doc][badge-doc-aws]][aws-doc]
 
-This package allows you to write AWS Lambda functions to process S3 bucket 
-events.
+This package allows you write AWS Lambda functions as the back end of your API 
+through the AWS Lambda proxy integration.
 
 [<img src="/_asset/misc_arrow-up.png" align="right">](#top)
 ## Quick Hands-On
@@ -28,14 +28,12 @@ import "C"
 import (
 	"fmt"
 
-	"github.com/eawsy/aws-lambda-go-event/service/lambda/runtime/event/s3evt"
+	"github.com/eawsy/aws-lambda-go-event/service/lambda/runtime/event/apigatewayproxyevt"
 	"github.com/eawsy/aws-lambda-go-core/service/lambda/runtime"
 )
 
-func Handle(evt *s3evt.Event, ctx *runtime.Context) (interface{}, error) {
-	for _, rec := range evt.Records {
-		fmt.Println(rec)
-	}
+func Handle(evt *apigatewayproxyevt.Event, ctx *runtime.Context) (interface{}, error) {
+	fmt.Println(evt)
 	return nil, nil
 }
 ```
@@ -60,9 +58,9 @@ This product is licensed to you under the Apache License, Version 2.0 (the "Lice
 except in compliance with the License. See [LICENSE](/LICENSE) and [NOTICE](/NOTICE) for more information.
 
 [eawsy-runtime]: https://github.com/eawsy/aws-lambda-go-shim
-[eawsy-doc]: https://godoc.org/github.com/eawsy/aws-lambda-go-event/service/lambda/runtime/event/s3evt
+[eawsy-doc]: https://godoc.org/github.com/eawsy/aws-lambda-go-event/service/lambda/runtime/event/apigatewayproxyevt
 
-[aws-doc]: http://docs.aws.amazon.com/AmazonS3/latest/dev/Welcome.html
+[aws-doc]: http://docs.aws.amazon.com/apigateway/latest/developerguide/welcome.html
 
 [badge-doc-go]: http://img.shields.io/badge/api-godoc-7986cb.svg?style=flat-square
 [badge-doc-aws]: http://img.shields.io/badge/api-awsdoc-efaf27.svg?style=flat-square

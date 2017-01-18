@@ -18,6 +18,7 @@ definitions and helpers to deal with [AWS Lambda event source mapping][aws-lambd
 [<img src="_asset/misc_arrow-up.png" align="right">](#top)
 ## Supported Events
 
+  - [Amazon API Gateway Proxy Events][eawsy-apigatewayproxyevt]
   - [Amazon CloudWatch Logs Events][eawsy-cloudwatchlogsevt]
   - [Amazon CloudWatch Scheduled Events][eawsy-cloudwatchschedevt]
   - [Amazon Cognito Sync Events][eawsy-cognitosyncevt]
@@ -100,6 +101,7 @@ affiliates in the United States and/or other countries.
 [eawsy-pr]: https://github.com/eawsy/aws-lambda-go-event/issues?q=is:pr%20is:open
 [eawsy-issues]: https://github.com/eawsy/aws-lambda-go-event/issues?q=is:issue%20is:open
 
+[eawsy-apigatewayproxyevt]: /service/lambda/runtime/event/apigatewayproxyevt
 [eawsy-cloudwatchlogsevt]: /service/lambda/runtime/event/cloudwatchlogsevt
 [eawsy-cloudwatchschedevt]: /service/lambda/runtime/event/cloudwatchschedevt 
 [eawsy-cognitosyncevt]: /service/lambda/runtime/event/cognitosyncevt
