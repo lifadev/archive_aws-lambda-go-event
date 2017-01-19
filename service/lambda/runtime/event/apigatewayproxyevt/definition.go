@@ -131,7 +131,7 @@ type Event struct {
 	// If used with Amazon API Gateway binary support, it represents the Base64
 	// encoded binary data from the client.
 	// Otherwise it represents the raw data from the client.
-	Body json.RawMessage
+	Body string
 
 	// A flag to indicate if the applicable request payload is Base64 encoded.
 	IsBase64Encoded bool
