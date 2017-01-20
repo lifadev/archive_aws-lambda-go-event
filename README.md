@@ -27,6 +27,7 @@ definitions and helpers to deal with [AWS Lambda event source mapping][aws-lambd
   - [Amazon S3 Events][eawsy-s3evt]
   - [Amazon Simple Email Service Events][eawsy-sesevt]
   - [Amazon Simple Notification Service Events][eawsy-snsevt]
+  - [AWS CloudFormation Events][eawsy-cloudformationevt]
 
 [<img src="_asset/misc_arrow-up.png" align="right">](#top)
 ## About
@@ -110,6 +111,7 @@ affiliates in the United States and/or other countries.
 [eawsy-s3evt]: /service/lambda/runtime/event/s3evt
 [eawsy-sesevt]: /service/lambda/runtime/event/sesevt
 [eawsy-snsevt]: /service/lambda/runtime/event/snsevt
+[eawsy-cloudformationevt]: /service/lambda/runtime/event/cloudformationevt
 
 [aws-home]: https://aws.amazon.com/
 [aws-lambda-home]: https://aws.amazon.com/lambda/

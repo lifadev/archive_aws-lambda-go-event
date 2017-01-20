@@ -52,6 +52,7 @@ func Handle(evt *kinesisstreamsevt.Event, ctx *runtime.Context) (interface{}, er
   - [Amazon S3 Events][eawsy-s3evt]
   - [Amazon Simple Email Service Events][eawsy-sesevt]
   - [Amazon Simple Notification Service Events][eawsy-snsevt]
+  - [AWS CloudFormation Events][eawsy-cloudformationevt]
 
 [<img src="/_asset/misc_arrow-up.png" align="right">](#top)
 ## License
@@ -76,3 +77,4 @@ except in compliance with the License. See [LICENSE](/LICENSE) and [NOTICE](/NOT
 [eawsy-s3evt]: /service/lambda/runtime/event/s3evt
 [eawsy-sesevt]: /service/lambda/runtime/event/sesevt
 [eawsy-snsevt]: /service/lambda/runtime/event/snsevt
+[eawsy-cloudformationevt]: /service/lambda/runtime/event/cloudformationevt
