@@ -93,7 +93,7 @@ type EventRecord struct {
 
 // String returns the string representation.
 func (e *EventRecord) String() string {
-	s, _ := json.MarshalIndent(e, "", "  ")
+	s, _ := json.Marshal(e)
 	return string(s)
 }
 
@@ -110,7 +110,7 @@ type Event struct {
 
 // String returns the string representation.
 func (e *Event) String() string {
-	s, _ := json.MarshalIndent(e, "", "  ")
+	s, _ := json.Marshal(e)
 	return string(s)
 }
 
