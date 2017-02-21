@@ -33,15 +33,12 @@ type timestamp struct {
 // the fractional part being millisecond offset within the second. It then sets
 // *t to a copy of the interpreted time.
 func (t *timestamp) UnmarshalJSON(data []byte) error {
-	v, err := strconv.ParseFloat(string(data), 64)
+	sec, err := strconv.ParseFloat(string(data), 64)
 	if err != nil {
 		return err
 	}
 
-	sec := int64(v)
-	nsec := int64((v - float64(sec)) * float64(time.Second))
-
-	t.Time = time.Unix(sec, nsec)
+	t.Time = time.Unix(0, int64(sec*float64(time.Second)))
 	return nil
 }
 

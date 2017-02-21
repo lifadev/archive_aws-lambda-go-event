@@ -40,11 +40,7 @@ func (t *timestamp) UnmarshalJSON(data []byte) error {
 		return err
 	}
 
-	sec := v / 1000
-	nsec := (v - sec*1000) * int64(time.Millisecond)
-
-	t.Time = time.Unix(sec, nsec)
-
+	t.Time = time.Unix(0, v*int64(time.Millisecond))
 	return nil
 }
 
