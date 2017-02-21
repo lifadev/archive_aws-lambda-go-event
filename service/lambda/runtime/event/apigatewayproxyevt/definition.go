@@ -49,20 +49,23 @@ type Identity struct {
 	UserARN string
 
 	// The Amazon Cognito identity ID of the caller making the request.
-	// Available only if the request was signed with Amazon Cognito credentials.
+	// Available only if the request was signed with Amazon Cognito
+	// credentials.
 	CognitoIdentityID string
 
 	// The Amazon Cognito identity pool ID of the caller making the request.
-	// Available only if the request was signed with Amazon Cognito credentials.
+	// Available only if the request was signed with Amazon Cognito
+	// credentials.
 	CognitoIdentityPoolID string
 
-	// The Amazon Cognito authentication type of the caller making the request.
-	// Available only if the request was signed with Amazon Cognito credentials.
+	// The Amazon Cognito authentication type of the caller making the
+	// request. Available only if the request was signed with Amazon Cognito
+	// credentials.
 	CognitoAuthenticationType string
 
-	// The Amazon Cognito authentication provider used by the caller making the
-	// request.
-	// Available only if the request was signed with Amazon Cognito credentials.
+	// The Amazon Cognito authentication provider used by the caller making
+	// the request. Available only if the request was signed with
+	// Amazon Cognito credentials.
 	CognitoAuthenticationProvider string
 }
 
@@ -79,7 +82,8 @@ type RequestContext struct {
 	RequestID string
 
 	// The incoming request HTTP method name.
-	// Valid values include: DELETE, GET, HEAD, OPTIONS, PATCH, POST, and PUT.
+	// Valid values include: DELETE, GET, HEAD, OPTIONS, PATCH, POST, and
+	// PUT.
 	HTTPMethod string
 
 	// The resource path as defined in Amazon API Gateway.
@@ -94,8 +98,8 @@ type RequestContext struct {
 	// The API caller identification information.
 	Identity *Identity
 
-	// If used with Amazon Cognito, it represents the claims returned from the
-	// Amazon Cognito user pool after the method caller is successfully
+	// If used with Amazon Cognito, it represents the claims returned from
+	// the Amazon Cognito user pool after the method caller is successfully
 	// authenticated.
 	// If used with Amazon API Gateway custom authorizer, it represents the
 	// specified key-value pair of the context map returned from the custom
@@ -106,18 +110,20 @@ type RequestContext struct {
 // Event represents an Amazon API Gateway Proxy Event.
 type Event struct {
 	// The incoming request HTTP method name.
-	// Valid values include: DELETE, GET, HEAD, OPTIONS, PATCH, POST, and PUT.
+	// Valid values include: DELETE, GET, HEAD, OPTIONS, PATCH, POST, and
+	// PUT.
 	HTTPMethod string
 
 	// The incoming reauest HTTP headers.
 	// Duplicate entries are not supported.
 	Headers map[string]string
 
-	// The resource path with raw placeholders as defined in Amazon API Gateway.
+	// The resource path with raw placeholders as defined in
+	// Amazon API Gateway.
 	Resource string
 
-	// The incoming request path parameters corresponding to the resource path
-	// placeholders values as defined in Resource.
+	// The incoming request path parameters corresponding to the resource
+	// path placeholders values as defined in Resource.
 	PathParameters map[string]string
 
 	// The real path corresponding to the path parameters injected into the
@@ -128,16 +134,17 @@ type Event struct {
 	// Duplicate entries are not supported.
 	QueryStringParameters map[string]string
 
-	// If used with Amazon API Gateway binary support, it represents the Base64
-	// encoded binary data from the client.
+	// If used with Amazon API Gateway binary support, it represents the
+	// Base64 encoded binary data from the client.
 	// Otherwise it represents the raw data from the client.
 	Body string
 
-	// A flag to indicate if the applicable request payload is Base64 encoded.
+	// A flag to indicate if the applicable request payload is Base64
+	// encoded.
 	IsBase64Encoded bool
 
-	// The name-value pairs defined as configuration attributes associated with
-	// the deployment stage of the API.
+	// The name-value pairs defined as configuration attributes associated
+	// with the deployment stage of the API.
 	StageVariables map[string]string
 
 	// The contextual information associated with the API call.

@@ -22,36 +22,36 @@ import "encoding/json"
 // See http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/crpg-ref-requests.html
 type Event struct {
 	// A unique ID for the request.
-	// Combining the StackID with the RequestID forms a value that can be used to
-	// uniquely identify a request on a particular custom resource.
+	// Combining the StackID with the RequestID forms a value that can be
+	// used to uniquely identify a request on a particular custom resource.
 	RequestID string
 
 	// The ARN that identifies the stack containing the custom resource.
-	// Combining the StackID with the RequestID forms a value that can be used to
-	// uniquely identify a request on a particular custom resource.
+	// Combining the StackID with the RequestID forms a value that can be
+	// used to uniquely identify a request on a particular custom resource.
 	StackID string
 
 	// The request type is set by the AWS CloudFormation stack operation
-	// (create-stack, update-stack, or delete-stack) that was initiated by the
-	// template developer for the stack that contains the custom resource.
-	// Must be one of: Create, Update, or Delete.
+	// (create-stack, update-stack, or delete-stack) that was initiated by
+	// the template developer for the stack that contains the custom
+	// resource. Must be one of: Create, Update, or Delete.
 	// See http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/crpg-ref-requesttypes.html
 	RequestType string
 
-	// The template developer-chosen resource type of the custom resource in the
-	// AWS CloudFormation template.
-	// Custom resource type names can be up to 60 characters long and can include
-	// alphanumeric and the following characters: _@-.
+	// The template developer-chosen resource type of the custom resource
+	// in the AWS CloudFormation template. Custom resource type names can be
+	// up to 60 characters long and can include alphanumeric and the
+	// following characters: _@-.
 	ResourceType string
 
-	// The template developer-chosen name (logical ID) of the custom resource in
-	// the AWS CloudFormation template.
-	// This is provided to facilitate communication between the custom resource
-	// provider and the template developer.
+	// The template developer-chosen name (logical ID) of the custom
+	// resource in the AWS CloudFormation template.
+	// This is provided to facilitate communication between the custom
+	// resource provider and the template developer.
 	LogicalResourceID string
 
-	// A required custom resource provider-defined physical ID that is unique for
-	// that provider.
+	// A required custom resource provider-defined physical ID that is
+	// unique for that provider.
 	// Always sent with Update and Delete requests; never sent with Create.
 	// See http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-cfn-customresource.html#d0e41385
 	PhysicalResourceID string
@@ -61,12 +61,13 @@ type Event struct {
 	// provider.
 	ResourceProperties json.RawMessage
 
-	// Used only for Update requests. Contains the resource properties that were
-	// declared previous to the update request.
+	// Used only for Update requests. Contains the resource properties that
+	// were declared previous to the update request.
 	OldResourceProperties json.RawMessage
 
-	// The response URL identifies a pre-signed Amazon S3 bucket that receives
-	// responses from the custom resource provider to AWS CloudFormation.
+	// The response URL identifies a pre-signed Amazon S3 bucket that
+	// receives responses from the custom resource provider to
+	// AWS CloudFormation.
 	ResponseURL string
 
 	// The service token (AWS Lambda function ARN) that is obtained from the

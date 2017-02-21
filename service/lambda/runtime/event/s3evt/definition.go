@@ -23,13 +23,14 @@ import (
 
 // Object provides information about the Amazon S3 object that caused the event.
 type Object struct {
-	// The object key provides information about the bucket and object involved in
-	// the event.
+	// The object key provides information about the bucket and object
+	// involved in the event.
 	// Note that the object keyname value is URL encoded. For example
 	// "red flower.jpg" becomes "red+flower.jpg".
 	Key string
 
-	// The object size in bytes. Provided for "ObjectCreated" event, otherwise 0.
+	// The object size in bytes. Provided for "ObjectCreated" event,
+	// otherwise 0.
 	Size int
 
 	// The object ETag. Provided for "ObjectCreated" event, otherwise empty.
@@ -38,34 +39,34 @@ type Object struct {
 	// The object version if bucket is versioning-enabled, otherwise empty.
 	VersionID string
 
-	// A string representation of a hexadecimal value used to determine event
-	// sequence, only used with PUTs and DELETEs.
-	// It provides a way to determine the sequence of events. Event notifications
-	// are not guaranteed to arrive in the order that the events occurred.
-	// However, notifications from events that create objects (PUTs) and delete
-	// objects contain a sequencer, which can be used to determine the order of
-	// events for a given object key.
-	// If you compare the sequencer strings from two event notifications on the
-	// same object key, the event notification with the greater sequencer
-	// hexadecimal value is the event that occurred later. If you are using event
-	// notifications to maintain a separate database or index of your Amazon S3
-	// objects, you will probably want to compare and store the sequencer values
-	// as you process each event notification.
+	// A string representation of a hexadecimal value used to determine
+	// event sequence, only used with PUTs and DELETEs. It provides a way
+	// to determine the sequence of events. Event notifications are not
+	// guaranteed to arrive in the order that the events occurred. However,
+	// notifications from events that create objects (PUTs) and delete
+	// objects contain a sequencer, which can be used to determine the order
+	// of events for a given object key.
+	// If you compare the sequencer strings from two event notifications on
+	// the same object key, the event notification with the greater
+	// sequencer hexadecimal value is the event that occurred later. If you
+	// are using event notifications to maintain a separate database or
+	//index of your Amazon S3 objects, you will probably want to compare and
+	// store the sequencer values as you process each event notification.
 	// Note that:
-	// - The sequencers cannot be used to determine order for events on different
-	//   object keys.
-	// - The sequencers can be of different lengths. So to compare these values,
-	//   you first right pad the shorter value with zeros and then do
-	//   lexicographical comparison.
+	// - The sequencers cannot be used to determine order for events on
+	//   different object keys.
+	// - The sequencers can be of different lengths. So to compare these
+	//   values, you first right pad the shorter value with zeros and then
+	//   do lexicographical comparison.
 	Sequencer string
 }
 
 // UserIdentity represents details about an IAM identity,
 type UserIdentity struct {
-	// A unique identifier for the entity that made the call. For requests made
-	// with temporary security credentials, this value includes the session name
-	// that is passed to the AssumeRole, AssumeRoleWithWebIdentity, or
-	// GetFederationToken API call.
+	// A unique identifier for the entity that made the call. For requests
+	// made with temporary security credentials, this value includes the
+	// session name that is passed to the AssumeRole,
+	// AssumeRoleWithWebIdentity, or GetFederationToken API call.
 	PrincipalID string
 }
 
@@ -87,16 +88,18 @@ type Record struct {
 	// The schema version for the record.
 	S3SchemaVersion string
 
-	// The Amazon S3 notification feature enables you to receive notifications
-	// when certain events happen in your bucket. To enable notifications, you
-	// must first add a notification configuration identifying the events you want
-	// Amazon S3 to publish, and the destinations where you want Amazon S3 to send
-	// the event notifications. You store this configuration in the notification
-	// subresource associated with a bucket. ConfigurationID represents the ID of
-	// this configuration.
+	// The Amazon S3 notification feature enables you to receive
+	// notifications when certain events happen in your bucket. To enable
+	// notifications, you must first add a notification configuration
+	// identifying the events you want Amazon S3 to publish, and the
+	// destinations where you want Amazon S3 to send the event
+	// notifications. You store this configuration in the notification
+	// subresource associated with a bucket. ConfigurationID represents the
+	// ID of this configuration.
 	ConfigurationID string
 
-	// Information about the Amazon S3 bucket from which the event originated.
+	// Information about the Amazon S3 bucket from which the event
+	// originated.
 	Bucket *Bucket
 
 	// Information about the Amazon S3 object that caused the event.
@@ -142,8 +145,8 @@ type EventRecord struct {
 	// Information about the request that caused the event.
 	RequestParameters *RequestParameters
 
-	// Tracing information returned by Amazon S3 in the response to the request
-	// that caused the event.
+	// Tracing information returned by Amazon S3 in the response to the
+	// request that caused the event.
 	ResponseElements *ResponseElements
 
 	// The AWS region where the event originated.

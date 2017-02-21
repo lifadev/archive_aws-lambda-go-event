@@ -15,7 +15,7 @@
 //
 
 /*
-Package kinesisstreamsevt allows you to write AWS Lambda functions to consume and
-process data from Amazon Kinesis streams.
+Package kinesisstreamsevt allows you to write AWS Lambda functions to consume
+and process data from Amazon Kinesis Streams.
 */
 package kinesisstreamsevt

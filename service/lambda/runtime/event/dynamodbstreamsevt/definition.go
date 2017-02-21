@@ -73,10 +73,11 @@ type Record struct {
 
 	// The type of data from the modified DynamoDB item that was captured in
 	// this stream record:
-	//   - KEYS_ONLY: only the key attributes of the modified item.
-	//   - NEW_IMAGE: the entire item, as it appeared after it was modified.
-	//   - OLD_IMAGE: the entire item, as it appeared before it was modified.
-	//   - NEW_AND_OLD_IMAGES: both the new and the old item images of the item.
+	// - KEYS_ONLY: only the key attributes of the modified item.
+	// - NEW_IMAGE: the entire item, as it appeared after it was modified.
+	// - OLD_IMAGE: the entire item, as it appeared before it was modified.
+	// - NEW_AND_OLD_IMAGES: both the new and the old item images of the
+	//   item.
 	StreamViewType string
 
 	// The approximate date and time when the stream record was created.
@@ -102,19 +103,20 @@ type EventRecord struct {
 	// stream record.
 	EventID string
 
-	// The type of data modification that was performed on the DynamoDB table:
+	// The type of data modification that was performed on the DynamoDB
+	// table:
 	// - INSERT: a new item was added to the table.
 	// - MODIFY: one or more of an existing item's attributes were modified.
 	// - REMOVE: the item was deleted from the table.
 	EventName string
 
-	// The version number of the stream record format. This number is updated
-	// whenever the structure of Record is modified.
+	// The version number of the stream record format. This number is
+	// updated whenever the structure of Record is modified.
 	//
-	// Client applications must not assume that EventVersion will remain at a
-	// particular value, as this number is subject to change at any time. In
-	// general, EventVersion will only increase as the low-level Amazon DynamoDB
-	// Streams API evolves.
+	// Client applications must not assume that EventVersion will remain at
+	// a particular value, as this number is subject to change at any time.
+	// In general, EventVersion will only increase as the low-level
+	// Amazon DynamoDB Streams API evolves.
 	EventVersion string
 
 	// The AWS service from which the stream record originated.

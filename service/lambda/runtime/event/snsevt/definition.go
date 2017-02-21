@@ -33,9 +33,9 @@ type MessageAttributes struct {
 // Record represents the unit of data of an Amazon SNS message.
 // See also http://docs.aws.amazon.com/sns/latest/dg/json-formats.html
 type Record struct {
-	// A Universally Unique Identifier, unique for each message published. For a
-	// message that Amazon SNS resends during a retry, the message ID of the
-	// original message is used.
+	// A Universally Unique Identifier, unique for each message published.
+	// For a message that Amazon SNS resends during a retry, the message ID
+	// of the original message is used.
 	MessageID string
 
 	// The type of the message.
@@ -44,13 +44,13 @@ type Record struct {
 	// The time when the notification was published.
 	Timestamp time.Time
 
-	// The Subject parameter specified when the notification was published to the
-	// topic.
+	// The Subject parameter specified when the notification was published
+	// to the topic.
 	// Note that this is an optional parameter.
 	Subject string
 
-	// The Message value specified when the notification was published to the
-	// topic.
+	// The Message value specified when the notification was published to
+	// the topic.
 	Message string
 
 	// The attributes associated with the message.
@@ -59,8 +59,8 @@ type Record struct {
 	// The Version of the Amazon SNS signature used.
 	SignatureVersion string
 
-	// Base64-encoded "SHA1withRSA" signature of the Message, MessageID, Subject
-	// (if present), Type, Timestamp, and TopicARN values.
+	// Base64-encoded "SHA1withRSA" signature of the Message, MessageID,
+	// Subject (if present), Type, Timestamp, and TopicARN values.
 	// See also http://docs.aws.amazon.com/sns/latest/dg/SendMessageToHttp.verify.signature.html
 	Signature string
 
@@ -70,9 +70,9 @@ type Record struct {
 	// The ARN of the topic that this message was published to.
 	TopicARN string
 
-	// An URL that you can use to unsubscribe the endpoint from this topic. If you
-	// visit this URL, Amazon SNS unsubscribes the endpoint and stops sending
-	// notifications to this endpoint.
+	// An URL that you can use to unsubscribe the endpoint from this topic.
+	// If you visit this URL, Amazon SNS unsubscribes the endpoint and stops
+	// sending notifications to this endpoint.
 	UnsubscribeURL string
 }
 

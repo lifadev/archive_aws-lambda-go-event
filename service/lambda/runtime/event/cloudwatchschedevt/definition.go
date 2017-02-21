@@ -26,8 +26,8 @@ type Event struct {
 	// A unique value generated for every event.
 	ID string
 
-	// The event timestamp, which is the time when the event have been actually
-	// triggered.
+	// The event timestamp, which is the time when the event have been
+	// actually triggered.
 	Time time.Time
 
 	// The 12-digit number identifying an AWS account.
@@ -41,19 +41,19 @@ type Event struct {
 	// In our case the value is always an empty object.
 	Detail json.RawMessage
 
-	// Identifies, in combination with the source field, the fields and values
-	// that will appear in the detail field.
+	// Identifies, in combination with the source field, the fields and
+	// values that will appear in the detail field.
 	// In our case the value is always "Scheduled Event".
 	DetailType string `json:"detail-type"`
 
-	// Identifies the service that sourced the event. All events sourced from
-	// within AWS will begin with "aws.". Customer-generated events can have any
-	// value here as long as it doesn't begin with "aws.".
+	// Identifies the service that sourced the event. All events sourced
+	// from within AWS will begin with "aws.". Customer-generated events can
+	// have any value here as long as it doesn't begin with "aws.".
 	// In our case the value is always "aws.events".
 	Source string
 
-	// This JSON array contains ARNs that identify resources that are involved in
-	// the event.
+	// This JSON array contains ARNs that identify resources that are
+	// involved in the event.
 	// In our case the value is always an Amazon CloudWatch Rule ARN.
 	Resources []string
 }

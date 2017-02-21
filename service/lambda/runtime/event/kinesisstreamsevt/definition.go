@@ -21,7 +21,7 @@ import (
 	"time"
 )
 
-// Record represents the unit of data of an Amazon Kinesis stream.
+// Record represents the unit of data of an Amazon Kinesis Stream.
 type Record struct {
 	// The schema version for the record.
 	KinesisSchemaVersion string
@@ -31,26 +31,26 @@ type Record struct {
 	SequenceNumber string
 
 	// The approximate time that the record was inserted into the stream.
-	// This is set when a stream successfully receives and stores a record and
-	// is commonly referred to as a server-side timestamp.
-	// It has millisecond precision and there are no guarantees about its
-	// accuracy, or that the it is always increasing. For example, records in
-	// a shard or across a stream might have timestamps that are out of order.
+	// This is set when a stream successfully receives and stores a record
+	// and is commonly referred to as a server-side timestamp. It has
+	// millisecond precision and there are no guarantees about its accuracy,
+	// or that the it is always increasing. For example, records in a shard
+	// or across a stream might have timestamps that are out of order.
 	ApproximateArrivalTimestamp time.Time
 
 	// Identifies which shard in the stream the data record is assigned to.
 	PartitionKey string
 
-	// The data blob. The data in the blob is both opaque and immutable to the
-	// Amazon Kinesis service, which does not inspect, interpret, or change
-	// the data in the blob in any way. When the data blob (the payload before
-	// base64-encoding) is added to the partition key size, the total size
-	// must not exceed the maximum record size (1 MB).
+	// The data blob. The data in the blob is both opaque and immutable to
+	// the Amazon Kinesis service, which does not inspect, interpret, or
+	// change the data in the blob in any way. When the data blob (the
+	// payload before base64-encoding) is added to the partition key size,
+	// the total size must not exceed the maximum record size (1 MB).
 	// Data is automatically base64 encoded/decoded by the SDK.
 	Data []byte
 }
 
-// EventRecord provides contextual information about an Amazon Kinesis streams
+// EventRecord provides contextual information about an Amazon Kinesis Streams
 // event.
 type EventRecord struct {
 	// The event id.
@@ -74,7 +74,8 @@ type EventRecord struct {
 	// The AWS region where the event originated.
 	AWSRegion string
 
-	// The underlying Amazon Kinesis streams record associated with the event.
+	// The underlying Amazon Kinesis Streams record associated with the
+	// event.
 	Kinesis *Record
 }
 
@@ -89,9 +90,9 @@ func (e *EventRecord) GoString() string {
 	return e.String()
 }
 
-// Event represents an Amazon Kinesis streams event.
+// Event represents an Amazon Kinesis Streams event.
 type Event struct {
-	// The list of Amazon Kinesis streams event records.
+	// The list of Amazon Kinesis Streams event records.
 	Records []*EventRecord
 }
 

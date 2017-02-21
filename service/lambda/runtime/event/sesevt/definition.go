@@ -80,8 +80,8 @@ type Action struct {
 	Type string
 
 	// Contains the invocation type of the AWS Lambda function.
-	// Possible values are "RequestResponse"" and "Event". Present only for the
-	// AWS Lambda action type.
+	// Possible values are "RequestResponse"" and "Event". Present only for
+	// the AWS Lambda action type.
 	InvocationType string
 
 	// Contains the ARN of the AWS Lambda function that was triggered.
@@ -92,18 +92,18 @@ type Action struct {
 // Mail contains information about the email to which the notification pertains.
 type Mail struct {
 	// The unique ID assigned to the email by Amazon SES. If the email was
-	// delivered to Amazon S3, the message ID is also the Amazon S3 object key
-	// that was used to write the message to your Amazon S3 bucket.
-	// Note that this message ID was assigned by Amazon SES. You can find the
-	// message ID of the original email in the headers and CommonHeaders object of
-	// the Mail object.
+	// delivered to Amazon S3, the message ID is also the Amazon S3 object
+	// key that was used to write the message to your Amazon S3 bucket.
+	// Note that this message ID was assigned by Amazon SES. You can find
+	// the message ID of the original email in the headers and CommonHeaders
+	// object of the Mail object.
 	MessageID string
 
 	// The time at which the email was received.
 	Timestamp time.Time
 
-	// The email address from which the email was sent (the envelope MAIL FROM
-	// address).
+	// The email address from which the email was sent (the envelope
+	// MAIL FROM address).
 	Source string
 
 	// A list of email addresses that were recipients of the original mail.
@@ -111,22 +111,21 @@ type Mail struct {
 
 	// A list of headers common to all emails.
 	// Note that any message ID within the CommonHeaders object is from the
-	// original message that you passed to Amazon SES. The message ID that Amazon
-	// SES subsequently assigned to the message is in the MessageID field of the
-	// Mail object.
+	// original message that you passed to Amazon SES. The message ID that
+	// Amazon SES subsequently assigned to the message is in the MessageID
+	// field of the Mail object.
 	CommonHeaders *CommonHeaders
 
-	// Specifies whether the headers were truncated in the notification, which
-	// will happen if the headers are larger than 10 KB.
-	// Possible values are true or false.
+	// Specifies whether the headers were truncated in the notification,
+	// which will happen if the headers are larger than 10 KB.
 	HeadersTruncated bool
 
-	// A list of the email's original headers. Each header in the list has a name
-	// field and a value field.
-	// Note that any message ID within the headers field is from the original
-	// message that you passed to Amazon SES. The message ID that Amazon SES
-	// subsequently assigned to the message is in the MessageID field of the Mail
-	// object.
+	// A list of the email's original headers. Each header in the list has a
+	// name field and a value field.
+	// Note that any message ID within the headers field is from the
+	// original message that you passed to Amazon SES. The message ID that
+	// Amazon SES subsequently assigned to the message is in the MessageID
+	// field of the Mail object.
 	// See https://tools.ietf.org/search/rfc5322 for more information about
 	// headers.
 	Headers []*Header
@@ -134,21 +133,22 @@ type Mail struct {
 
 // Receipt contains information about the email delivery.
 type Receipt struct {
-	// A list of the recipient addresses for this delivery. This list might be a
-	// subset of the recipients to which the mail was addressed.
+	// A list of the recipient addresses for this delivery. This list might
+	// be a subset of the recipients to which the mail was addressed.
 	Recipients []string
 
 	// Specifies when the action was triggered.
 	Timestamp time.Time
 
-	// Specifies the period, in milliseconds, from the time Amazon SES received
-	// the message to the time it triggered the action.
+	// Specifies the period, in milliseconds, from the time Amazon SES
+	// received the message to the time it triggered the action.
 	ProcessingTimeMillis int
 
 	// Encapsulates information about the action that was executed.
 	Action *Action
 
-	// Indicates whether the message is spam. Possible values are as follows:
+	// Indicates whether the message is spam. Possible values are as
+	// follows:
 	// - PASS: the check succeeded.
 	// - FAIL: the check failed.
 	// - GRAY: Amazon SES scanned the email but could not determine with
@@ -163,12 +163,12 @@ type Receipt struct {
 	// - FAIL: the check failed.
 	// - GRAY: the message is not DKIM-signed.
 	// - PROCESSING_FAILED: there is an issue that prevents Amazon SES from
-	//   checking the DKIM signature. For example, DNS queries are failing or the
-	//   DKIM signature header is not formatted properly.
+	//   checking the DKIM signature. For example, DNS queries are failing
+	//   or the DKIM signature header is not formatted properly.
 	DKIMVerdict *Verdict
 
-	// Indicates whether the Sender Policy Framework (SPF) check passed. Possible
-	// values are as follows:
+	// Indicates whether the Sender Policy Framework (SPF) check passed.
+	// Possible values are as follows:
 	// - PASS: the check succeeded.
 	// - FAIL: the check failed.
 	// - GRAY: there is no SPF policy under the domain used in the MAIL FROM
@@ -177,21 +177,22 @@ type Receipt struct {
 	//   checking the SPF record. For example, DNS queries are failing.
 	SPFVerdict *Verdict
 
-	// Indicates whether the message contains a virus. Possible values are as
-	// follows:
+	// Indicates whether the message contains a virus. Possible values are
+	// as follows:
 	// - PASS: the check succeeded.
 	// - FAIL: the check failed.
 	// - GRAY: Amazon SES scanned the email but could not determine with
 	//   confidence whether it contains a virus.
-	// - PROCESSING_FAILED: Amazon SES is unable to scan the content of the email.
-	//   For example, the email is not a valid MIME message.
+	// - PROCESSING_FAILED: Amazon SES is unable to scan the content of the
+	//   email. For example, the email is not a valid MIME message.
 	VirusVerdict *Verdict
 }
 
 // Record represents the unit of data of an Amazon SES message.
 // See also http://docs.aws.amazon.com/ses/latest/DeveloperGuide/notification-contents.html
 type Record struct {
-	// Contains information about the email to which the notification pertains.
+	// Contains information about the email to which the notification
+	// pertains.
 	Mail *Mail
 
 	// Contains information about the email delivery.
