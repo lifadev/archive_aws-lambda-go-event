@@ -23,7 +23,7 @@ definitions and helpers to deal with [AWS Lambda event source mapping][aws-lambd
   - [Amazon CloudWatch Scheduled Events][eawsy-cloudwatchschedevt]
   - [Amazon Cognito Sync Events][eawsy-cognitosyncevt]
   - [Amazon DynamoDB Streams Events][eawsy-dynamodbstreamsevt]
-  - [Amazon Kinesis Firehose Events][eawsy-kinesisfirehosesevt]
+  - [Amazon Kinesis Firehose Events][eawsy-kinesisfirehoseevt]
   - [Amazon Kinesis Streams Events][eawsy-kinesisstreamsevt]
   - [Amazon S3 Events][eawsy-s3evt]
   - [Amazon Simple Email Service Events][eawsy-sesevt]
