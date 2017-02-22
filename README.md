@@ -23,6 +23,7 @@ definitions and helpers to deal with [AWS Lambda event source mapping][aws-lambd
   - [Amazon CloudWatch Scheduled Events][eawsy-cloudwatchschedevt]
   - [Amazon Cognito Sync Events][eawsy-cognitosyncevt]
   - [Amazon DynamoDB Streams Events][eawsy-dynamodbstreamsevt]
+  - [Amazon Kinesis Firehose Events][eawsy-kinesisfirehosesevt]
   - [Amazon Kinesis Streams Events][eawsy-kinesisstreamsevt]
   - [Amazon S3 Events][eawsy-s3evt]
   - [Amazon Simple Email Service Events][eawsy-sesevt]
@@ -107,6 +108,7 @@ affiliates in the United States and/or other countries.
 [eawsy-cloudwatchschedevt]: /service/lambda/runtime/event/cloudwatchschedevt 
 [eawsy-cognitosyncevt]: /service/lambda/runtime/event/cognitosyncevt
 [eawsy-dynamodbstreamsevt]: /service/lambda/runtime/event/dynamodbstreamsevt
+[eawsy-kinesisfirehoseevt]: /service/lambda/runtime/event/kinesisfirehoseevt
 [eawsy-kinesisstreamsevt]: /service/lambda/runtime/event/kinesisstreamsevt
 [eawsy-s3evt]: /service/lambda/runtime/event/s3evt
 [eawsy-sesevt]: /service/lambda/runtime/event/sesevt
