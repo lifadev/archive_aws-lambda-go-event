@@ -22,18 +22,15 @@ go get -u -d github.com/eawsy/aws-lambda-go-event/...
 ```go
 package main
 
-// /* Required, but no C code needed. */
-import "C"
-
 import (
-	"fmt"
+	"log"
 
 	"github.com/eawsy/aws-lambda-go-event/service/lambda/runtime/event/cognitosyncevt"
 	"github.com/eawsy/aws-lambda-go-core/service/lambda/runtime"
 )
 
 func Handle(evt *cognitosyncevt.Event, ctx *runtime.Context) (interface{}, error) {
-	fmt.Println(evt)
+	log.Println(evt)
 	return nil, nil
 }
 ```
@@ -43,5 +40,5 @@ func Handle(evt *cognitosyncevt.Event, ctx *runtime.Context) (interface{}, error
 
 [aws-doc]: http://docs.aws.amazon.com/cognito/latest/developerguide/what-is-amazon-cognito.html
 
-[badge-doc-go]: http://img.shields.io/badge/api-godoc-7986cb.svg?style=flat-square
-[badge-doc-aws]: http://img.shields.io/badge/api-awsdoc-efaf27.svg?style=flat-square
+[badge-doc-go]: http://img.shields.io/badge/api-godoc-3F51B5.svg?style=flat-square
+[badge-doc-aws]: http://img.shields.io/badge/api-awsdoc-FF9800.svg?style=flat-square

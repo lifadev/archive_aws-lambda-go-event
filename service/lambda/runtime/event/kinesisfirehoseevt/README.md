@@ -23,7 +23,7 @@ go get -u -d github.com/eawsy/aws-lambda-go-event/...
 package main
 
 import (
-	"fmt"
+	"log"
 
 	"github.com/eawsy/aws-lambda-go-event/service/lambda/runtime/event/kinesisfirehoseevt"
 	"github.com/eawsy/aws-lambda-go-core/service/lambda/runtime"
@@ -32,7 +32,7 @@ import (
 func Handle(in *kinesisfirehoseevt.Input, ctx *runtime.Context) (kinesisfirehoseevt.Output, error) {
 	rcds := make([]*kinesisfirehoseevt.OutputRecord, 0)
 	for _, r := range in.Records {
-		fmt.Println(r)
+		log.Println(r)
 		rcds = append(rcds, &kinesisfirehoseevt.OutputRecord{
 			RecordID: r.RecordID,
 			Result:   "Ok",
@@ -48,6 +48,6 @@ func Handle(in *kinesisfirehoseevt.Input, ctx *runtime.Context) (kinesisfirehose
 
 [aws-doc]: http://docs.aws.amazon.com/firehose/latest/dev/what-is-this-service.html
 
-[badge-doc-go]: http://img.shields.io/badge/api-godoc-7986cb.svg?style=flat-square
-[badge-doc-aws]: http://img.shields.io/badge/api-awsdoc-efaf27.svg?style=flat-square
+[badge-doc-go]: http://img.shields.io/badge/api-godoc-3F51B5.svg?style=flat-square
+[badge-doc-aws]: http://img.shields.io/badge/api-awsdoc-FF9800.svg?style=flat-square
 
