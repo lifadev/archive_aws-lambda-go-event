@@ -36,6 +36,7 @@ go get -u -d github.com/eawsy/aws-lambda-go-event/...
   - [Amazon Simple Email Service Events][eawsy-sesevt]
   - [Amazon Simple Notification Service Events][eawsy-snsevt]
   - [AWS CloudFormation Events][eawsy-cloudformationevt]
+  - [AWS CodePipeline Events][eawsy-codepipelineevt]
 
 [<img src="_asset/misc_arrow-up.png" align="right">](#top)
 ## About
@@ -121,6 +122,7 @@ affiliates in the United States and/or other countries.
 [eawsy-sesevt]: /service/lambda/runtime/event/sesevt
 [eawsy-snsevt]: /service/lambda/runtime/event/snsevt
 [eawsy-cloudformationevt]: /service/lambda/runtime/event/cloudformationevt
+[eawsy-codepipelineevt]: /service/lambda/runtime/event/codepipelineevt
 
 [aws-home]: https://aws.amazon.com/
 [aws-lambda-home]: https://aws.amazon.com/lambda/
