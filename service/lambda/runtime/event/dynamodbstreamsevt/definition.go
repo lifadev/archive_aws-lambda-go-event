@@ -123,6 +123,9 @@ type EventRecord struct {
 	// In our case the value is always "aws:dynamodb".
 	EventSource string
 
+	// The DynamoDB table's ARN from which the stream record originated.
+	EventSourceARN string
+
 	// The region in which the GetRecords request was received.
 	AWSRegion string
 
