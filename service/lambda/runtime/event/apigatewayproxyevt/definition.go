@@ -114,7 +114,7 @@ type Event struct {
 	// PUT.
 	HTTPMethod string
 
-	// The incoming reauest HTTP headers.
+	// The incoming request HTTP headers.
 	// Duplicate entries are not supported.
 	Headers map[string]string
 
@@ -149,6 +149,23 @@ type Event struct {
 
 	// The contextual information associated with the API call.
 	RequestContext *RequestContext
+}
+
+// Response represents an API Gateway Lambda Proxy response format.
+type Response struct {
+	// A flag to indicate if the applicable request payload is Base64
+	// encoded.
+	IsBase64Encoded bool `json:"isBase64Encoded"`
+
+	// The outgoing HTTP status code.
+	StatusCode int `json:"statusCode"`
+
+	// The outgoing request HTTP headers.
+	Headers map[string]string `json:"headers"`
+
+	// If used with IsBase64Encoded flag true, it represents the Base64 encoded
+	// binary data. Otherwise it represents the raw data.
+	Body string `json:"body"`
 }
 
 // String returns the string representation.
