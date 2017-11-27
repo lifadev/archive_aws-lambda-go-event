@@ -151,24 +151,6 @@ type Event struct {
 	RequestContext *RequestContext
 }
 
-// Response represents a API Gateway Lambda Proxy response format
-type Response struct {
-	// A flag to indicate if the applicable request payload is Base64
-	// encoded.
-	IsBase64Encoded bool `json:"isBase64Encoded"`
-
-	// The outgoing HTTP status code
-	StatusCode int `json:"statusCode"`
-
-	// The outgoing reauest HTTP headers.
-	Headers map[string]string `json:"headers"`
-
-	// If used with IsBase64Encoded flag true, it represents the
-	// Base64 encoded binary data.
-	// Otherwise it represents the raw data.
-	Body string `json:"body"`
-}
-
 // String returns the string representation.
 func (e *Event) String() string {
 	s, _ := json.Marshal(e)
