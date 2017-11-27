@@ -15,7 +15,7 @@
 //
 
 /*
-Package apigatewayproxyevt allows you write AWS Lambda functions as the back end
-of your API through the AWS Lambda proxy integration.
+Package apigatewayproxyevt allows you to write an Amazon API Gateway custom
+authorizer that provide control access to your API methods.
 */
 package apigatewayauthorizerevt
