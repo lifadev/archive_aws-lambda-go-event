@@ -114,7 +114,7 @@ type Event struct {
 	// PUT.
 	HTTPMethod string
 
-	// The incoming reauest HTTP headers.
+	// The incoming request HTTP headers.
 	// Duplicate entries are not supported.
 	Headers map[string]string
 
@@ -160,7 +160,7 @@ type Response struct {
 	// The outgoing HTTP status code.
 	StatusCode int `json:"statusCode"`
 
-	// The outgoing reauest HTTP headers.
+	// The outgoing request HTTP headers.
 	Headers map[string]string `json:"headers"`
 
 	// If used with IsBase64Encoded flag true, it represents the Base64 encoded
