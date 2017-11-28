@@ -68,11 +68,12 @@ type Record struct {
 	SignatureCertURL string
 
 	// The URL that you must visit in order to confirm the subscription.
-	// Alternatively, you can instead use the Token with the ConfirmSubscription action to confirm the subscription.
+	// Alternatively, you can instead use the Token with the
+	// ConfirmSubscription action to confirm the subscription.
 	SubscribeURL string
 
-	// A value you can use with the ConfirmSubscription action to confirm the subscription.
-	// Alternatively, you can simply visit the SubscribeURL.
+	// A value you can use with the ConfirmSubscription action to confirm the
+	// subscription. Alternatively, you can simply visit the SubscribeURL.
 	Token string
 
 	// The ARN of the topic that this message was published to.
