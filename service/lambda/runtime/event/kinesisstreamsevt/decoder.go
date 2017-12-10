@@ -42,6 +42,12 @@ func (t *timestamp) UnmarshalJSON(data []byte) error {
 	return nil
 }
 
+func (r *timestamp) MarshalJSON() ([]byte, error) {
+	secf := float64(r.UnixNano())/float64(time.Second)
+	sec := strconv.FormatFloat(secf, 'f', 3, 64)
+	return []byte(sec), nil
+}
+
 type jsonRecord struct {
 	*recordAlias
 	ApproximateArrivalTimestamp timestamp
