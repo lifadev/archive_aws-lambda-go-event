@@ -12,8 +12,8 @@
 [![Help][badge-help]][eawsy-chat]
 [![Social][badge-social]][eawsy-twitter]
 
-[AWS Lambda][aws-lambda-home] lets you run code without provisioning or managing servers. With 
-[eawsy/aws-lambda-go-shim][eawsy-runtime], you can author your Lambda function code in Go. This project provides type 
+[AWS Lambda][aws-lambda-home] lets you run code without provisioning or managing servers. With
+[eawsy/aws-lambda-go-shim][eawsy-runtime], you can author your Lambda function code in Go. This project provides type
 definitions and helpers to deal with [AWS Lambda event source mapping][aws-lambda-mapping].
 
 ## Get Dependencies
@@ -26,6 +26,7 @@ go get -u -d github.com/eawsy/aws-lambda-go-event/...
 ## Supported Events
 
   - [Amazon API Gateway Proxy Events][eawsy-apigatewayproxyevt]
+  - [Amazon API Gateway Custom Authorizer Events][eawsy-apigatewayauthorizerevt]
   - [Amazon CloudWatch Logs Events][eawsy-cloudwatchlogsevt]
   - [Amazon CloudWatch Scheduled Events][eawsy-cloudwatchschedevt]
   - [Amazon Cognito Sync Events][eawsy-cognitosyncevt]
@@ -45,29 +46,29 @@ go get -u -d github.com/eawsy/aws-lambda-go-event/...
 
 This project is maintained and funded by Alsanium, SAS.
 
-[We][eawsy-home] :heart: [AWS][aws-home] and open source software. See [our other projects][eawsy-github], or 
+[We][eawsy-home] :heart: [AWS][aws-home] and open source software. See [our other projects][eawsy-github], or
 [hire us][eawsy-hire] to help you build modern applications on AWS.
 
 [<img src="_asset/misc_arrow-up.png" align="right">](#top)
 ## Contact
 
-We want to make it easy for you, users and contributers, to talk with us and connect with each others, to share ideas, 
-solve problems and make help this project awesome. Here are the main channels we're running currently and we'd love to 
+We want to make it easy for you, users and contributers, to talk with us and connect with each others, to share ideas,
+solve problems and make help this project awesome. Here are the main channels we're running currently and we'd love to
 hear from you on them.
 
-### Twitter 
-  
-[eawsyhq][eawsy-twitter] 
+### Twitter
 
-Follow and chat with us on Twitter. 
+[eawsyhq][eawsy-twitter]
+
+Follow and chat with us on Twitter.
 
 Share stories!
 
-### Gitter 
+### Gitter
 
 [eawsy/bavardage][eawsy-chat]
 
-This is for all of you. Users, developers and curious. You can find help, links, questions and answers from all the 
+This is for all of you. Users, developers and curious. You can find help, links, questions and answers from all the
 community including the core team.
 
 Ask questions!
@@ -76,11 +77,11 @@ Ask questions!
 
 [pull requests][eawsy-pr] & [issues][eawsy-issues]
 
-You are invited to contribute new features, fixes, or updates, large or small; we are always thrilled to receive pull 
+You are invited to contribute new features, fixes, or updates, large or small; we are always thrilled to receive pull
 requests, and do our best to process them as fast as we can.
 
-Before you start to code, we recommend discussing your plans through the [eawsy/bavardage channel][eawsy-chat], 
-especially for more ambitious contributions. This gives other contributors a chance to point you in the right direction, 
+Before you start to code, we recommend discussing your plans through the [eawsy/bavardage channel][eawsy-chat],
+especially for more ambitious contributions. This gives other contributors a chance to point you in the right direction,
 give you feedback on your design, and help you find out if someone else is working on the same thing.
 
 Write code!
@@ -88,16 +89,16 @@ Write code!
 [<img src="_asset/misc_arrow-up.png" align="right">](#top)
 ## License
 
-This product is licensed to you under the Apache License, Version 2.0 (the "License"); you may not use this product 
+This product is licensed to you under the Apache License, Version 2.0 (the "License"); you may not use this product
 except in compliance with the License. See [LICENSE](LICENSE) and [NOTICE](NOTICE) for more information.
 
 [<img src="_asset/misc_arrow-up.png" align="right">](#top)
 ## Trademark
 
-Alsanium, eawsy, the "Created by eawsy" logo, and the "eawsy" logo are trademarks of Alsanium, SAS. or its affiliates in 
+Alsanium, eawsy, the "Created by eawsy" logo, and the "eawsy" logo are trademarks of Alsanium, SAS. or its affiliates in
 France and/or other countries.
 
-Amazon Web Services, the "Powered by Amazon Web Services" logo, and AWS Lambda are trademarks of Amazon.com, Inc. or its 
+Amazon Web Services, the "Powered by Amazon Web Services" logo, and AWS Lambda are trademarks of Amazon.com, Inc. or its
 affiliates in the United States and/or other countries.
 
 
@@ -112,8 +113,9 @@ affiliates in the United States and/or other countries.
 [eawsy-issues]: https://github.com/eawsy/aws-lambda-go-event/issues?q=is:issue%20is:open
 
 [eawsy-apigatewayproxyevt]: /service/lambda/runtime/event/apigatewayproxyevt
+[eawsy-apigatewayauthorizerevt]: /service/lambda/runtime/event/apigatewayauthorizerevt
 [eawsy-cloudwatchlogsevt]: /service/lambda/runtime/event/cloudwatchlogsevt
-[eawsy-cloudwatchschedevt]: /service/lambda/runtime/event/cloudwatchschedevt 
+[eawsy-cloudwatchschedevt]: /service/lambda/runtime/event/cloudwatchschedevt
 [eawsy-cognitosyncevt]: /service/lambda/runtime/event/cognitosyncevt
 [eawsy-dynamodbstreamsevt]: /service/lambda/runtime/event/dynamodbstreamsevt
 [eawsy-kinesisfirehoseevt]: /service/lambda/runtime/event/kinesisfirehoseevt
